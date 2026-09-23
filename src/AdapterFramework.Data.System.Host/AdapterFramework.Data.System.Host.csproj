@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AdapterFramework.Data.System.Host</RootNamespace>
+    <AssemblyName>HomeAssistantAdapterHost</AssemblyName>
+    <RuntimeIdentifiers>win-x64;linux-x64;linux-arm64</RuntimeIdentifiers>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <UserSecretsId>ha-adapter-host-dev</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+    <!--
+      NOTE: The real host is expected to reference AdapterFramework.Data.Framework.Host and use it
+      to compose configuration loading, the /api/v1/configuration REST surface, health, and the
+      Windows Service / systemd lifecycle (see prep notes §2 and README "Verify before building").
+      Add: <PackageReference Include="AdapterFramework.Data.Framework.Host" Version="2.1.0" />
+      and replace/extend Program.cs's minimal bootstrap accordingly.
+    -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdapterFramework.Data.Adapter.HomeAssistant\AdapterFramework.Data.Adapter.HomeAssistant.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

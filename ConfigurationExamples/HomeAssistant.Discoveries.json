@@ -1,0 +1,20 @@
+{
+  "_comment": "Example discovery requests. Post to POST /api/v1/configuration/<componentId>/Discoveries. Query string uses Key=Value;Key2=Value2 convention (see DiscoveryService.cs).",
+  "Examples": [
+    {
+      "id": "discover-all",
+      "query": "",
+      "autoSelect": false
+    },
+    {
+      "id": "discover-sensors-only",
+      "query": "IncludeDomains=sensor,binary_sensor",
+      "autoSelect": true
+    },
+    {
+      "id": "discover-kitchen",
+      "query": "IncludeEntities=sensor.kitchen_*,light.kitchen_*",
+      "autoSelect": true
+    }
+  ]
+}

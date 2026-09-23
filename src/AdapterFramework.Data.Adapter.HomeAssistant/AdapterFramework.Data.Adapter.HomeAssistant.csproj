@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- NOTE: verify this matches the framework's current target at build time (2.1.0-era docs stated .NET 10). -->
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>AdapterFramework.Data.Adapter.HomeAssistant</RootNamespace>
+    <AssemblyName>AdapterFramework.Data.Adapter.HomeAssistant</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifiers>win-x64;linux-x64;linux-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      NOTE: package set/versions taken from AVEVA Adapter Framework docs (docs.aveva.com/bundle/adapter-framework)
+      as of the research pass behind this repo. PIN EXACT VERSIONS and re-check for newer releases before
+      first build - see /docs/PREP-NOTES.md and README "Verify before building" section.
+    -->
+    <PackageReference Include="AdapterFramework.Data.Framework.Abstractions" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.AdapterCommon" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.Common" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.ConfigurationProvider" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.ComponentIdProvider" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.Registry" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.DataProtector" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.Framework.PersistentQueue" Version="2.1.0" />
+    <PackageReference Include="AdapterFramework.Data.DataModel" Version="2.1.0" />
+  </ItemGroup>
+
+</Project>

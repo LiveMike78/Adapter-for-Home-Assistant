@@ -1,0 +1,46 @@
+[
+  {
+    "PointId": "sensor.kitchen_temperature",
+    "EntityId": "sensor.kitchen_temperature",
+    "AttributeName": null,
+    "ValueType": "Double",
+    "UnitOfMeasurement": "°C",
+    "Selected": true,
+    "Name": "Kitchen Temperature",
+    "StreamId": null,
+    "DataFilterId": null
+  },
+  {
+    "PointId": "sensor.kitchen_temperature.battery_level",
+    "EntityId": "sensor.kitchen_temperature",
+    "AttributeName": "battery_level",
+    "ValueType": "Double",
+    "UnitOfMeasurement": "%",
+    "Selected": false,
+    "Name": "Kitchen Temperature battery_level",
+    "StreamId": null,
+    "DataFilterId": null
+  },
+  {
+    "PointId": "light.bed_light",
+    "EntityId": "light.bed_light",
+    "AttributeName": null,
+    "ValueType": "Boolean",
+    "UnitOfMeasurement": null,
+    "Selected": true,
+    "Name": "Bed Light",
+    "StreamId": "BedroomLights.BedLight.State",
+    "DataFilterId": null
+  },
+  {
+    "PointId": "light.bed_light.brightness",
+    "EntityId": "light.bed_light",
+    "AttributeName": "brightness",
+    "ValueType": "Double",
+    "UnitOfMeasurement": null,
+    "Selected": true,
+    "Name": "Bed Light brightness",
+    "StreamId": null,
+    "DataFilterId": "clamp-0-255"
+  }
+]

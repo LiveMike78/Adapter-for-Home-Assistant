@@ -1,0 +1,13 @@
+{
+  "_comment": "Default configuration used when the adapter is deployed as an edge module/container with no external config volume mounted. Mirrors the sample WeatherGovAdapter's Edge-Module default config pattern. Override every value below via environment variables or a mounted config file in real deployments - do not ship real tokens in this file.",
+  "DataSource": {
+    "BaseUrl": "https://homeassistant.local:8123",
+    "AccessToken": "",
+    "AllowInsecureBaseUrl": false,
+    "HistoryBackfillEnabled": true,
+    "HistoryBackfillMaxLookbackHours": 24,
+    "HistoryBatchSize": 100,
+    "IncludeDomains": ["sensor", "binary_sensor", "climate", "light", "switch"],
+    "ExcludeDomains": ["automation", "script", "update", "zone", "persistent_notification"]
+  }
+}

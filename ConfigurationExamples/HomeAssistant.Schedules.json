@@ -1,0 +1,4 @@
+{
+  "_comment": "This adapter is event-driven (Home Assistant WebSocket subscription), not poll-based, so no collection schedule is required. This file is provided because sibling AVEVA adapters ship a Schedules.json - confirm at build time whether AdapterCommon requires this resource to exist even for a push-style source, or whether it can be omitted/empty for this adapter.",
+  "Schedules": []
+}

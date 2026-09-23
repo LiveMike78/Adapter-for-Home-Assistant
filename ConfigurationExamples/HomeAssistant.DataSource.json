@@ -1,0 +1,26 @@
+{
+  "BaseUrl": "https://homeassistant.local:8123",
+  "WebSocketUrl": null,
+  "AccessToken": "REPLACE_WITH_A_HOME_ASSISTANT_LONG_LIVED_ACCESS_TOKEN",
+  "AllowInsecureBaseUrl": false,
+  "RequestTimeoutMs": 10000,
+  "MaxRetries": 3,
+  "ReconnectBackoffInitialMs": 1000,
+  "ReconnectBackoffMaxMs": 60000,
+  "HistoryBackfillEnabled": true,
+  "HistoryBackfillMaxLookbackHours": 24,
+  "HistoryBatchSize": 100,
+  "IncludeDomains": [
+    "sensor", "binary_sensor", "climate", "light", "switch", "cover",
+    "fan", "media_player", "lock", "water_heater", "weather",
+    "person", "device_tracker"
+  ],
+  "ExcludeDomains": ["automation", "script", "update", "zone", "persistent_notification"],
+  "IncludeEntities": [],
+  "ExcludeEntities": [],
+  "ExcludeAttributes": [
+    "friendly_name", "icon", "entity_picture", "supported_features",
+    "attribution", "context", "assumed_state"
+  ],
+  "FlattenSimpleArrayAttributes": false
+}

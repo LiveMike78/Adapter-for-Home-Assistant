@@ -1,0 +1,30 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore AdapterForHomeAssistant.sln
+
+      - name: Build
+        run: dotnet build AdapterForHomeAssistant.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test AdapterForHomeAssistant.sln -c Release --no-build --verbosity normal

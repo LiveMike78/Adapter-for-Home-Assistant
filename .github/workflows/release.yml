@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  publish-binaries:
+    strategy:
+      matrix:
+        rid: [win-x64, linux-x64, linux-arm64]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish ${{ matrix.rid }}
+        run: |
+          dotnet publish src/AdapterFramework.Data.System.Host/AdapterFramework.Data.System.Host.csproj \
+            -c Release -r ${{ matrix.rid }} --self-contained true \
+            -p:PublishSingleFile=true \
+            -o publish/${{ matrix.rid }}
+
+      - name: Zip artifact
+        run: |
+          cd publish/${{ matrix.rid }}
+          zip -r ../../aveva-adapter-for-home-assistant-${{ github.ref_name }}-${{ matrix.rid }}.zip .
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: aveva-adapter-for-home-assistant-${{ github.ref_name }}-${{ matrix.rid }}.zip
+
+  publish-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push multi-arch image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/aveva-adapter-for-home-assistant:${{ github.ref_name }}
+            ghcr.io/${{ github.repository_owner }}/aveva-adapter-for-home-assistant:latest
